@@ -1,5 +1,6 @@
 import './styles.css'
 import {ContextMenu} from './menu'
+import {BackgroundModule} from './modules/background.module'
 
 // вызов меню
 const contextMenu = new ContextMenu();
