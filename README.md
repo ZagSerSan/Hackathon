@@ -1,3 +1,1 @@
-# hackathon
-
-team 1
+# Hackaton #1
