@@ -24,7 +24,9 @@ export class Message extends Module {
       message.textContent = quote;
    
       document.body.appendChild(message);
-   
+      const x = event.clientX;
+      const y = event.clientY;
+      
       setTimeout(() => {
       document.body.removeChild(message);
       }, 5000)
