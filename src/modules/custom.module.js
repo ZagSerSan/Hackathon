@@ -171,4 +171,8 @@ export default class CustomModule extends Module{
             alert('Нажмите правой кнопкой мыши для того что бы вызвать контекстное меню!')
         }
     }
+
+    toHTML() {
+        return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
+    }
 }
