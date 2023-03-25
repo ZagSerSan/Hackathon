@@ -17,7 +17,8 @@ body {
 .menu {
     position: fixed;
     z-index: 1000;
-    width: 150px;
+    min-width: 150px;
+    width: auto;
     background: #1b1a1a;
     border-radius: 5px;
     display: none;
@@ -35,6 +36,9 @@ body {
     cursor: pointer;
     transition: background-color .2s ease-in;
     border-radius: inherit;
+}
+.menu .menu-item:hover {
+    cursor: pointer;
 }
 
 .menu .menu-item:hover {
