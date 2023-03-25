@@ -1,20 +1,19 @@
 import './styles.css'
-
 import {ContextMenu} from './menu'
-
 import {BackgroundModule} from './modules/background.module'
 import {ClicksModule} from './modules/clicks.module'
-import {Message} from './modules/message.module'
 import {ShapeModule} from './modules/shape.module'
-import CustomModule from "./modules/custom.module";
+import {TestModule} from './modules/test.module'
+import {Message} from './modules/message.module'
+
 
 const contextMenu = new ContextMenu();
 
 const backgroundModule = new BackgroundModule();
 const clicksModule = new ClicksModule();
-const message = new Message();
 const shapeModule = new ShapeModule();
-const customModule = new CustomModule();
+const testModule = new TestModule();
+const message = new Message();
 
 // вызов меню
 contextMenu.open();
@@ -27,7 +26,8 @@ contextMenu.add([
   shapeModule,
   message
 ]);
-contextMenu.add(customModule);
+contextMenu.add(testModule);
 
 // слушатель клика по айтемам меню
 contextMenu.menuItemListener();
+
