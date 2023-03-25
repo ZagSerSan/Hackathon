@@ -1,8 +1,8 @@
 import {Module} from '../core/module'
 
-export class Castommessage extends Module {
+export class Message extends Module {
    constructor() {
-      super('castommessage', 'Случайное сообщение')
+      super('message', 'Случайное сообщение')
    }
    trigger() {
       // функционал модуля
@@ -24,9 +24,6 @@ export class Castommessage extends Module {
       message.textContent = quote;
    
       document.body.appendChild(message);
-   
-      const x = event.clientX;
-      const y = event.clientY;
    
       setTimeout(() => {
       document.body.removeChild(message);

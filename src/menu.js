@@ -2,10 +2,15 @@ import {Menu} from './core/menu'
 
 export class ContextMenu extends Menu {
    #arrayOfModules;
+   #startHtmlTemplate;
 
    constructor() {
       super('#menu');
       this.#arrayOfModules = [];
+      //todo
+      // обнуление
+      // this.#startHtmlTemplate = '';
+      // this.modulIsActive = false;
    }
    open() {
       document.addEventListener("contextmenu", (event) => {
@@ -27,9 +32,13 @@ export class ContextMenu extends Menu {
             this.el.innerHTML += modul.toHTML()
             this.#arrayOfModules.push(modul)
          });
+         // стартовый html шаблон для обнуления
+         this.#startHtmlTemplate = this.el;
       } else {
          this.el.innerHTML += modules.toHTML()
          this.#arrayOfModules.push(modules)
+         // стартовый html шаблон для обнуления
+         this.#startHtmlTemplate = this.el;
       }
    }
    menuItemListener() {
@@ -42,6 +51,18 @@ export class ContextMenu extends Menu {
             })
             // включение модуля
             findedModule.trigger()
+
+            //todo
+            /* обнуление
+            if (this.modulIsActive) {
+               console.log('this.modulIsActive');
+               document.body.removeAttribute('style');
+               findedModule.trigger()
+            } else {
+               findedModule.trigger()
+               this.modulIsActive = true
+            }
+            */
          }
       })
    }
