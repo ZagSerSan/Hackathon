@@ -2,6 +2,7 @@ import './styles.css'
 import {ContextMenu} from './menu'
 import {BackgroundModule} from './modules/background.module'
 import CustomModule from "./modules/custom.module";
+import CountdownTimerModule from "./modules/countdown-timer.module";
 
 // вызов меню
 const contextMenu = new ContextMenu();
@@ -17,7 +18,8 @@ menuItems.forEach(item => {
     } else if (item.dataset.role == 'figure') {
       console.log('Здесь выполняется код модуля "Случайная фигура"');
     } else if (item.dataset.role == 'timer') {
-      console.log('Здесь выполняется код модуля "Таймер отсчета"');
+      const countdownTimerModule = new CountdownTimerModule();
+      countdownTimerModule.trigger();
     } else if (item.dataset.role == 'sound') {
       console.log('Здесь выполняется код модуля "Случайный звук"');
     } else if (item.dataset.role == 'background') {
