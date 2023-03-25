@@ -4,7 +4,7 @@ import {BackgroundModule} from './modules/background.module'
 import {ClicksModule} from './modules/clicks.module'
 import {ShapeModule} from './modules/shape.module'
 import {Message} from './modules/message.module'
-import CustomModule from "./modules/custom.module";
+// import CustomModule from "./modules/custom.module";
 
 const contextMenu = new ContextMenu();
 
@@ -12,7 +12,7 @@ const backgroundModule = new BackgroundModule();
 const clicksModule = new ClicksModule();
 const shapeModule = new ShapeModule();
 const message = new Message();
-const customModule = new CustomModule();
+// const customModule = new CustomModule();
 
 // вызов меню
 contextMenu.open();
@@ -25,7 +25,7 @@ contextMenu.add([
   shapeModule,
   message
 ]);
-contextMenu.add(customModule);
+// contextMenu.add(customModule);
 
 // слушатель клика по айтемам меню
 contextMenu.menuItemListener();
