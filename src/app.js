@@ -1,6 +1,7 @@
 import './styles.css'
 import {ContextMenu} from './menu'
 import {BackgroundModule} from './modules/background.module'
+import CustomModule from "./modules/custom.module";
 
 // вызов меню
 const contextMenu = new ContextMenu();
@@ -24,7 +25,8 @@ menuItems.forEach(item => {
     } else if (item.dataset.role == 'message') {
       console.log('Здесь выполняется код модуля "Кастомное сообщение"');
     } else if (item.dataset.role == 'custom') {
-      console.log('Здесь выполняется код модуля "Собственный модуль"');
+      const custom = new CustomModule('custom', 'Кастомный модуль')
+      custom.trigger()
     }
   })
 })

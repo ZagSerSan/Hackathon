@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.title {
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.custom_game {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.elem {
+    width: 100px;
+    height: 100px;
+    border: 1px solid white;
+    display: inline-block;
+
+    cursor: pointer;
+}
+
+.col {
+    width: 400px;
+}
+
+.custom_open {
+    background-color: black;
+}
+
+.square_resolution {
+    width: 100px;
+    height: 100px;
+}
+
+.square_default {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.square_ok {
+    background-color: green;
+}
+
+.square_defeated {
+    background-color: red;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
