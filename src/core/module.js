@@ -12,7 +12,6 @@ export class Module {
 
   trigger() {
     console.log(`Модуль ${this.type} запущен`)
-    // throw new Error(`Trigger method should be implemented in module "${this.type}"`)
   }
 
   toHTML() {
