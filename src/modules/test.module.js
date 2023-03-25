@@ -1,11 +1,11 @@
 import {Module} from '../core/module'
 
-export class ShapeModule extends Module {
+export class TestModule extends Module {
    constructor() {
-      super('shape', 'Случайная фигура')
+      super('test', 'Тестовый модуль')
    }
    trigger() {
-      console.log('Рандомная фигура сработала!');
+      console.log('Тестовый модуль сработал!');
    }
    toHTML() {
       return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
