@@ -2,6 +2,7 @@ import './styles.css'
 import {ContextMenu} from './menu'
 import {BackgroundModule} from './modules/background.module'
 import CustomModule from "./modules/custom.module";
+import ClicksModule from "./modules/clicks.module";
 
 // вызов меню
 const contextMenu = new ContextMenu();
@@ -13,7 +14,8 @@ const menuItems = document.querySelectorAll('.menu-item');
 menuItems.forEach(item => {
   item.addEventListener('click', event => {
     if (item.dataset.role == 'analytics') {
-      console.log('Здесь выполняется код модуля "Аналитика кликов"');
+      const clicksModule = new ClicksModule();
+      clicksModule.trigger();
     } else if (item.dataset.role == 'figure') {
       console.log('Здесь выполняется код модуля "Случайная фигура"');
     } else if (item.dataset.role == 'timer') {
