@@ -5,6 +5,7 @@ export class BackgroundModule extends Module {
       super('background', 'Случайный фон')
    }
    trigger() {
+      // функционал модуля
       console.log('Случайный фон сработал!');
       document.body.style.backgroundColor = `#${Math.random().toString(16).substring(2,8)}`;
    }
