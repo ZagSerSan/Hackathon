@@ -2,10 +2,16 @@ import './styles.css'
 import {ContextMenu} from './menu'
 import {BackgroundModule} from './modules/background.module'
 
+
+const backgroundModule = new BackgroundModule();
+
 // вызов меню
 const contextMenu = new ContextMenu();
 contextMenu.open();
 contextMenu.close();
+
+contextMenu.add(backgroundModule)
+
 
 // слушатель нажатия на айтемы меню
 const menuItems = document.querySelectorAll('.menu-item');

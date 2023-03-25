@@ -18,4 +18,13 @@ export class ContextMenu extends Menu {
          this.el.classList.remove('open');
       });
    }
+   add(modules) {
+      if (Array.isArray(modules)) {
+         modules.forEach(modul => {
+            this.el.innerHTML += modul.toHTML()
+         });
+      } else {
+         this.el.innerHTML += modules.toHTML()
+      }
+   }
 }
