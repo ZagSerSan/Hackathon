@@ -2,11 +2,12 @@ import './styles.css'
 import {ContextMenu} from './menu'
 // moduls
 import {BackgroundModule} from './modules/background.module'
-import {ClicksModule} from './modules/clicks.module'
+
+import CustomModule from "./modules/custom.module";
+import ClicksModule from "./modules/clicks.module";
 import {ShapeModule} from './modules/shape.module'
 import {Message} from './modules/message.module'
 import {RandomSoundModule} from "./modules/sound.module";
-// import CustomModule from "./modules/custom.module";
 
 const contextMenu = new ContextMenu();
 
@@ -33,4 +34,3 @@ contextMenu.add([
 
 // слушатель клика по айтемам меню
 contextMenu.menuItemListener();
-
