@@ -25,7 +25,6 @@ export default class CustomModule extends Module{
     }
 
     trigger() {
-        console.log('Я КАСТОМНЧЙ ТРИГЕР')
 
         // Проверяем на то что если человек нажмет 100000 раз на мой модуль ( что бы ререндера не было )
         if (document.querySelector('.custom_game')) {
@@ -81,6 +80,7 @@ export default class CustomModule extends Module{
                 row.id = `${id}`
 
                 row.addEventListener('click',(e)=> {
+                    console.log('123')
                     const allSquares = document.querySelectorAll('.elem')
                     this.#getRate(row, allSquares, scoreHTML, greatestScoreHTML)
                 })
@@ -125,7 +125,7 @@ export default class CustomModule extends Module{
             }
 
             if (+row.id > 12 && +row.id < 17) {
-                if (randomizer <= 5) {
+                if (randomizer <= 7) {
                     const result = confirm('Вы победили! Хотите начать сначала?')
                     this.#newGame(result)
                 }
@@ -172,13 +172,6 @@ export default class CustomModule extends Module{
         }
     }
 
-    getScore(score) {
-        return score
-    }
-
-    setScore(score) {
-        return score++
-    }
 
     toHTML() {
         return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
