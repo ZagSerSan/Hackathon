@@ -42,11 +42,7 @@ export class ContextMenu extends Menu {
       }
    }
    clear() {
-      //todo
-      /* обнуление
-      */
-     const body = document.querySelector('body');
-      // document.body.removeAttribute('style');
+      const body = document.querySelector('body');
       body.innerHTML = '';
       body.removeAttribute('style');
       body.append(this.#startHtmlTemplate);
