@@ -1,7 +1,7 @@
 import {Module} from "../core/module";
 
 export default class CountdownTimerModule extends Module {
-      constructor() {super(`data-role`, `Таймер отсчета`);}
+      constructor() {super('timer', `Таймер отсчета`);}
 
       #countdownTimerBlock() {
             const timeInputForm = document.createElement(`form`);
@@ -88,5 +88,8 @@ export default class CountdownTimerModule extends Module {
                   timeInputForm.style.display = `none`;
                   this.#startCountdownTimer(event);
             });
+      }
+      toHTML() {
+            return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
       }
 }
