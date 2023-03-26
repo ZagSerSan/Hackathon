@@ -82,6 +82,14 @@ export default class ClicksModule extends Module {
     let ms = 6000;
     this.#countDownClock((ms/1000) - 1);
     this.#clicksCounter();
+<<<<<<< HEAD
+    setTimeout(() => {
+          this.#analyticsResultsContainer();
+          this.#singleClick = 0;
+          this.#doubleClick = 0;
+    }, ms);
+=======
+>>>>>>> 2730e95d8ecc412837f428165dc76d0060de5446
   }
   toHTML() {
     return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
