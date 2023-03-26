@@ -59,6 +59,15 @@ export class ContextMenu extends Menu {
          timer.style.display = 'none';
       }
 
+      const countDown = document.querySelector('.countdown')
+      const analitycs = document.querySelector('.analytics-results')
+
+      if (countDown || analitycs) {
+         countDown.remove()
+         analitycs.remove()
+
+      }
+
       this.modulIsActive = true
    }
    menuItemListener() {
