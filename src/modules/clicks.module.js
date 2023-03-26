@@ -83,6 +83,7 @@ export default class ClicksModule extends Module {
     this.#countDownClock((ms/1000) - 1);
     this.#clicksCounter();
 
+
 <<<<<<< HEAD
     setTimeout(() => {
           this.#analyticsResultsContainer();
