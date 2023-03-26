@@ -123,8 +123,8 @@ export default class CountdownTimerModule extends Module {
                   const btn = document.querySelector(`#submit-button`);
                   btn.addEventListener(`click`, event => {
                         event.preventDefault();
-                        const timeInputForm = document.querySelector(`#time-input-form`);
-                        timeInputForm.style.display = `none`;
+                        const timeInputFormTemp = document.querySelector(`#time-input-form`);
+                        timeInputFormTemp.style.display = `none`;
                         this.#startCountdownTimer();
                   });
             }
