@@ -1,8 +1,11 @@
-import {Module} from "../core/module";
+import {Module} from "@/core/module";
 import './timer.css';
 
 export default class CountdownTimerModule extends Module {
-      constructor() {super('timer', `Таймер отсчета`);}
+
+      constructor() {
+            super('timer', `Таймер отсчета`);
+      }
 
       #countdownTimerBlock() {
             const timeInputForm = document.createElement(`form`);
@@ -84,13 +87,13 @@ export default class CountdownTimerModule extends Module {
                   if (difference < 0) {
                         clearInterval(countdownTimer);
                         timer.textContent = `Timer has expired! Goodbye!`;
-                        document.body.append(timer);
                         setTimeout(() => timer.style.display = `none`, 2000);
                   } else {
                         timer.textContent = `${('0' + hours).slice(-2)}h ${('0' + minutes).slice(-2)}m ${('0' + seconds).slice(-2)}s`;
-                        document.body.append(timer);
                   }
             }, 1000);
+
+            document.body.append(timer);
       }
 
       trigger() {
