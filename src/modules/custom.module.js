@@ -81,6 +81,7 @@ export default class CustomModule extends Module{
                 row.id = `${id}`
 
                 row.addEventListener('click',(e)=> {
+                    console.log('123')
                     const allSquares = document.querySelectorAll('.elem')
                     this.#getRate(row, allSquares, scoreHTML, greatestScoreHTML)
                 })

@@ -101,6 +101,7 @@ export default class CountdownTimerModule extends Module {
             document.body.append(this.#countdownTimerBlock());
             const btn = document.querySelector(`#submit-button`);
             btn.addEventListener(`click`, event => {
+                  console.log('123')
                   const timeInputForm = document.querySelector(`#time-input-form`);
                   timeInputForm.style.display = `none`;
                   this.#startCountdownTimer(event);
