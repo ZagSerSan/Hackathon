@@ -25,7 +25,6 @@ export default class ClicksModule extends Module {
 
     document.addEventListener(`click`, SingleHandler);
     document.addEventListener(`dblclick`, DoubleHandler);
-    const countDown = document.querySelector('.countdown')
     const timeout = setTimeout(()=> {
       this.#analyticsResultsContainer(counterSingle, counterDouble, total)
       document.removeEventListener('click', SingleHandler)
@@ -34,20 +33,27 @@ export default class ClicksModule extends Module {
       counterSingle = 0
       counterDouble = 0
     },6000)
+    setInterval(()=> {
+      const countDown = document.querySelector('.countdown')
+      if (!countDown) {
+        clearTimeout(timeout)
+      }
+    },1)
   }
+
 
   #countDownClock(ms) {
     const countdown = document.createElement(`span`);
     countdown.dataset.id = `countdown`;
     countdown.className = 'countdown';
     const downloadTimer = setInterval(() => {
-          if (ms < 0) {
-                clearInterval(downloadTimer);
-                countdown.style.display = `none`;
-          } else {
-                countdown.textContent = ms;
-          }
-          ms--;
+      if (ms < 0) {
+        clearInterval(downloadTimer);
+        countdown.style.display = `none`;
+      } else {
+        countdown.textContent = ms;
+      }
+      ms--;
     }, 1000);
     document.body.append(countdown);
   }
