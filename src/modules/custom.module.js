@@ -8,8 +8,8 @@ export default class CustomModule extends Module{
     #score
     #greatest
 
-    constructor(type, text) {
-        super(type, text);
+    constructor() {
+        super('custom', 'Кубики');
 
         this.body = document.body
         this.container = document.createElement('div')
@@ -55,6 +55,7 @@ export default class CustomModule extends Module{
     }
 
     trigger() {
+        console.log('123')
         super.trigger();
         this.#initialize()
     }
@@ -170,5 +171,9 @@ export default class CustomModule extends Module{
         } else {
             alert('Нажмите правой кнопкой мыши для того что бы вызвать контекстное меню!')
         }
+    }
+
+    toHTML() {
+        return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
     }
 }
