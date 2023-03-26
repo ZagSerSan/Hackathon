@@ -1,4 +1,3 @@
-// timer
 import {Module} from "@/core/module";
 import './timer.css';
 
@@ -134,3 +133,5 @@ export default class CountdownTimerModule extends Module {
     return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
   }
 }
+
+
