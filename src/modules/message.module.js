@@ -40,9 +40,6 @@ export class Message extends Module {
       }
       document.body.append(message);
 
-      // setTimeout(() => {
-      // document.body.remove(message);
-      // }, 10000)
    }
    toHTML() {
       return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
