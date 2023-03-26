@@ -15,6 +15,8 @@ export default class CountdownTimerModule extends Module {
             hoursInput.type = `text`;
             hoursInput.id = `hours`;
             hoursInput.name = `hours`;
+            hoursInput.pattern = `[0-2][0-3]`;
+            hoursInput.required = true;
 
             const hoursLabel = document.createElement(`label`);
             hoursLabel.textContent = ` hours `;
@@ -24,6 +26,8 @@ export default class CountdownTimerModule extends Module {
             minutesInput.type = `text`;
             minutesInput.id = `minutes`;
             minutesInput.name = `minutes`;
+            minutesInput.pattern = `[0-5][0-9]`;
+            minutesInput.required = true;
 
             const minutesLabel = document.createElement(`label`);
             minutesLabel.textContent = ` minutes `;
@@ -33,6 +37,8 @@ export default class CountdownTimerModule extends Module {
             secondsInput.type = `text`;
             secondsInput.id = `seconds`;
             secondsInput.name = `seconds`;
+            secondsInput.pattern = `[0-5][0-9]`;
+            secondsInput.required = true;
 
             const secondsLabel = document.createElement(`label`);
             secondsLabel.textContent = ` seconds `;
@@ -43,57 +49,89 @@ export default class CountdownTimerModule extends Module {
             submitBtn.type = `button`;
             submitBtn.value = `Start countdown`;
 
+            const errorMsgBox = document.createElement(`span`);
+            errorMsgBox.className = `error-message-box`;
+            errorMsgBox.textContent = ``;
+            errorMsgBox.style.display = `none`;
+
             const div_collumn_1 = document.createElement('div');
             const div_collumn_2 = document.createElement('div');
             const div_collumn_3 = document.createElement('div');
+            const div_column_4 = document.createElement(`div`);
 
             div_collumn_1.className = 'collumn';
             div_collumn_2.className = 'collumn';
             div_collumn_3.className = 'collumn';
+            div_column_4.className = 'collumn';
 
-            div_collumn_1.append(hoursInput, hoursLabel)
-            div_collumn_2.append(minutesInput, minutesLabel)
-            div_collumn_3.append(secondsInput, secondsLabel)
+            div_collumn_1.append(errorMsgBox);
+            div_collumn_2.append(hoursInput, hoursLabel);
+            div_collumn_3.append(minutesInput, minutesLabel);
+            div_column_4.append(secondsInput, secondsLabel);
 
-            timeInputForm.append(div_collumn_1, div_collumn_2, div_collumn_3, submitBtn);
+            timeInputForm.append(div_collumn_1, div_collumn_2, div_collumn_3, div_column_4, submitBtn);
             return timeInputForm;
       }
 
-      #startCountdownTimer(e) {
-            let hhInput = Number(document.querySelector(`#hours`).value);
-            let mmInput = Number(document.querySelector(`#minutes`).value);
-            let ssInput = Number(document.querySelector(`#seconds`).value);
+      #startCountdownTimer() {
 
-            let userSetTimer = new Date();
+            const hhInput = Number(document.querySelector(`#hours`).value);
+            const mmInput = Number(document.querySelector(`#minutes`).value);
+            const ssInput = Number(document.querySelector(`#seconds`).value);
 
-            const newHour = userSetTimer.getHours() + hhInput;
-            const newMin = userSetTimer.getMinutes() + mmInput;
-            const newSec = userSetTimer.getSeconds() + ssInput + 2;
-            userSetTimer.setHours(newHour);
-            userSetTimer.setMinutes(newMin);
-            userSetTimer.setSeconds(newSec);
+            const isInputValid = this.#validateInput(hhInput, mmInput, ssInput);
+            console.log(isInputValid);
+
 
             const timer = document.createElement(`span`);
             timer.className = 'timer';
 
-            const countdownTimer = setInterval(() => {
-                  const now = new Date().getTime();
-                  let difference = userSetTimer.getTime() - now;
+            if (isInputValid) {
+                  let userSetTimer = new Date();
 
-                  const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                  const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                  const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                  const newHour = userSetTimer.getHours() + hhInput;
+                  const newMin = userSetTimer.getMinutes() + mmInput;
+                  const newSec = userSetTimer.getSeconds() + ssInput + 2;
+                  userSetTimer.setHours(newHour);
+                  userSetTimer.setMinutes(newMin);
+                  userSetTimer.setSeconds(newSec);
 
-                  if (difference < 0) {
-                        clearInterval(countdownTimer);
-                        timer.textContent = `Timer has expired! Goodbye!`;
-                        setTimeout(() => timer.style.display = `none`, 2000);
-                  } else {
-                        timer.textContent = `${('0' + hours).slice(-2)}h ${('0' + minutes).slice(-2)}m ${('0' + seconds).slice(-2)}s`;
-                  }
-            }, 1000);
+                  const countdownTimer = setInterval(() => {
+                        const now = new Date().getTime();
+                        let difference = userSetTimer.getTime() - now;
 
-            document.body.append(timer);
+                        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                        if (difference < 0) {
+                              clearInterval(countdownTimer);
+                              timer.textContent = `Timer has expired! Goodbye!`;
+                              setTimeout(() => timer.style.display = `none`, 2000);
+                        } else {
+                              timer.textContent = `${('0' + hours).slice(-2)}h ${('0' + minutes).slice(-2)}m ${('0' + seconds).slice(-2)}s`;
+                        }
+                  }, 1000);
+
+                  document.body.append(timer);
+            } else {
+                  const errorMsgBox = document.querySelector(`.error-message-box`);
+                  errorMsgBox.textContent = `Invalid input!`;
+                  errorMsgBox.style.display = `block`;
+                  const timeInputForm = document.querySelector(`#time-input-form`);
+                  timeInputForm.style.display = `inline`;
+                  const btn = document.querySelector(`#submit-button`);
+                  btn.addEventListener(`click`, event => {
+                        event.preventDefault();
+                        const timeInputForm = document.querySelector(`#time-input-form`);
+                        timeInputForm.style.display = `none`;
+                        this.#startCountdownTimer();
+                  });
+            }
+      }
+
+      #validateInput(hours, minutes, seconds) {
+            return /^[0-23]+$/.test(hours) && /^[0-59]+$/.test(minutes) && /^[0-59]+$/.test(seconds);
       }
 
       trigger() {
@@ -101,10 +139,10 @@ export default class CountdownTimerModule extends Module {
             document.body.append(this.#countdownTimerBlock());
             const btn = document.querySelector(`#submit-button`);
             btn.addEventListener(`click`, event => {
-                  console.log('123')
+                  event.preventDefault();
                   const timeInputForm = document.querySelector(`#time-input-form`);
                   timeInputForm.style.display = `none`;
-                  this.#startCountdownTimer(event);
+                  this.#startCountdownTimer();
             });
       }
       toHTML() {
