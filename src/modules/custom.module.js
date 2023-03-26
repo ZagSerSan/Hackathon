@@ -25,8 +25,7 @@ export default class CustomModule extends Module{
     }
 
     trigger() {
-
-        console.log('я тригер')
+        console.log('Я КАСТОМНЧЙ ТРИГЕР')
         // Проверяем на то что если человек нажмет 100000 раз на мой модуль ( что бы ререндера не было )
         if (document.querySelector('.custom_game')) {
             return
