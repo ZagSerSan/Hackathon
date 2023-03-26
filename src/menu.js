@@ -7,7 +7,6 @@ export class ContextMenu extends Menu {
    constructor() {
       super('#menu');
       this.#arrayOfModules = [];
-      //todo
       // обнуление
       this.#startHtmlTemplate = '';
       this.modulIsActive = false;
@@ -42,11 +41,7 @@ export class ContextMenu extends Menu {
       }
    }
    clear() {
-      //todo
-      /* обнуление
-      */
-     const body = document.querySelector('body');
-      // document.body.removeAttribute('style');
+      const body = document.querySelector('body');
       body.innerHTML = '';
       body.removeAttribute('style');
       body.append(this.#startHtmlTemplate);
