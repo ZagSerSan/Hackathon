@@ -58,6 +58,8 @@ export default class ClicksModule extends Module {
     this.#clicksCounter();
     setTimeout(() => {
           this.#analyticsResultsContainer();
+          this.#singleClick = 0;
+          this.#doubleClick = 0;
     }, ms);
   }
   toHTML() {
