@@ -6,12 +6,11 @@ export class BackgroundModule extends Module {
    }
    trigger() {
       // функционал модуля
-      // document.body.style.backgroundColor = `#${Math.random().toString(16).substring(2,8)}`;
       function getRandomInt(max) {
          return Math.floor(Math.random() * max);
       }
       // количество изображений
-      const imageCount = 4
+      const imageCount = 15
       document.body.style.backgroundImage = `url(./src/assets/bgimg/bg_${getRandomInt(imageCount)}.webp)`
       document.body.style.backgroundPosition = 'center'
       document.body.style.backgroundSize = 'cover'
