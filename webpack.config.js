@@ -62,6 +62,10 @@ module.exports = (env, argv) => {
               presets: ['@babel/preset-env']
             }
           }
+        },
+        {
+          test:/.mp3/,
+          type:'asset/resource'
         }
       ],
     }
