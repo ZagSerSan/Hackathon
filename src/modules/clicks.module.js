@@ -1,3 +1,89 @@
+import './clicks.css';
+import {Module} from '@/core/module';
+
+export default class ClicksModule extends Module {
+
+  constructor() {
+    super(`analytics`, `Аналитика кликов`);
+
+  }
+
+  #clicksCounter() {
+
+    let counterSingle = -1
+    let counterDouble = 0
+    let total = -1
+
+    function SingleHandler () {
+      counterSingle++
+      total++
+    }
+
+    function DoubleHandler() {
+      counterDouble++
+    }
+
+    document.addEventListener(`click`, SingleHandler);
+    document.addEventListener(`dblclick`, DoubleHandler);
+    const countDown = document.querySelector('.countdown')
+    const timeout = setTimeout(()=> {
+      this.#analyticsResultsContainer(counterSingle, counterDouble, total)
+      document.removeEventListener('click', SingleHandler)
+      document.removeEventListener('dblclick', DoubleHandler)
+      total = 0
+      counterSingle = 0
+      counterDouble = 0
+    },6000)
+  }
+
+  #countDownClock(ms) {
+    const countdown = document.createElement(`span`);
+    countdown.dataset.id = `countdown`;
+    countdown.className = 'countdown';
+    const downloadTimer = setInterval(() => {
+          if (ms < 0) {
+                clearInterval(downloadTimer);
+                countdown.style.display = `none`;
+          } else {
+                countdown.textContent = ms;
+          }
+          ms--;
+    }, 1000);
+    document.body.append(countdown);
+  }
+
+  #analyticsResultsContainer(single, double, total) {
+    const divItem = document.createElement(`div`);
+    divItem.className = `analytics-results`;
+
+    const singleCLickItem = document.createElement(`p`);
+    singleCLickItem.className = `single-click-result`;
+    singleCLickItem.textContent = `Single clicks: ${single}; `;
+
+    const doubleClickItem = document.createElement(`p`);
+    doubleClickItem.className = `double-click-result`;
+    doubleClickItem.textContent = `Double clicks:  ${double}; `;
+
+    const totalNoOfClicks = document.createElement(`p`);
+    totalNoOfClicks.className = `total-number-clicks`;
+    totalNoOfClicks.textContent = `Total number of clicks:  ${total}; `;
+
+    divItem.append(singleCLickItem, doubleClickItem, totalNoOfClicks);
+    document.body.append(divItem);
+  }
+
+  trigger() {
+    let ms = 6000;
+    this.#countDownClock((ms/1000) - 1);
+    this.#clicksCounter();
+  }
+  toHTML() {
+    return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
+  }
+}
+
+// тут правильный таймер
+/*
 import {Module} from "@/core/module";
 import './timer.css';
 
@@ -134,3 +220,102 @@ export default class CountdownTimerModule extends Module {
     return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
   }
 }
+*/
+
+//=====================
+
+/**
+ * 
+ * 
+ * import './clicks.css';
+import {Module} from '@/core/module';
+
+export default class ClicksModule extends Module {
+
+  constructor() {
+    super(`analytics`, `Аналитика кликов`);
+
+  }
+
+  #clicksCounter() {
+
+    let counterSingle = -1
+    let counterDouble = 0
+    let total = -1
+
+    function SingleHandler () {
+      counterSingle++
+      total++
+    }
+
+    function DoubleHandler() {
+      counterDouble++
+    }
+
+    document.addEventListener(`click`, SingleHandler);
+    document.addEventListener(`dblclick`, DoubleHandler);
+    const countDown = document.querySelector('.countdown')
+    const timeout = setTimeout(()=> {
+      this.#analyticsResultsContainer(counterSingle, counterDouble, total)
+      document.removeEventListener('click', SingleHandler)
+      document.removeEventListener('dblclick', DoubleHandler)
+      total = 0
+      counterSingle = 0
+      counterDouble = 0
+    },6000)
+    // setInterval(()=> {
+    //   if (countDown) {
+    //     console.log(countDown)
+    //     console.log('123')
+    //     clearTimeout(timeout)
+    //   }
+    // },1000)
+  }
+
+
+  #countDownClock(ms) {
+    const countdown = document.createElement(`span`);
+    countdown.dataset.id = `countdown`;
+    countdown.className = 'countdown';
+    const downloadTimer = setInterval(() => {
+          if (ms < 0) {
+                clearInterval(downloadTimer);
+                countdown.style.display = `none`;
+          } else {
+                countdown.textContent = ms;
+          }
+          ms--;
+    }, 1000);
+    document.body.append(countdown);
+  }
+
+  #analyticsResultsContainer(single, double, total) {
+    const divItem = document.createElement(`div`);
+    divItem.className = `analytics-results`;
+
+    const singleCLickItem = document.createElement(`p`);
+    singleCLickItem.className = `single-click-result`;
+    singleCLickItem.textContent = `Single clicks: ${single}; `;
+
+    const doubleClickItem = document.createElement(`p`);
+    doubleClickItem.className = `double-click-result`;
+    doubleClickItem.textContent = `Double clicks:  ${double}; `;
+
+    const totalNoOfClicks = document.createElement(`p`);
+    totalNoOfClicks.className = `total-number-clicks`;
+    totalNoOfClicks.textContent = `Total number of clicks:  ${total}; `;
+
+    divItem.append(singleCLickItem, doubleClickItem, totalNoOfClicks);
+    document.body.append(divItem);
+  }
+
+  trigger() {
+    let ms = 6000;
+    this.#countDownClock((ms/1000) - 1);
+    this.#clicksCounter();
+  }
+  toHTML() {
+    return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
+  }
+}
+ */
