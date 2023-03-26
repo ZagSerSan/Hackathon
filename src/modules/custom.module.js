@@ -1,48 +1,18 @@
-import {Module} from "../core/module";
+import {Module} from "@/core/module";
 
 import './custom.css';
-import {random} from "../utils";
+import {random} from "@/utils";
 
 
 export default class CustomModule extends Module{
     #score
     #greatest
 
-    constructor(type, text) {
-        super(type, text);
-
-        this.body = document.body
-        this.container = document.createElement('div')
-        this.game = document.createElement('div')
-        this.title = document.createElement('h1')
-        this.scoreHTML = document.createElement('h2')
-        this.greatestScoreHTML = document.createElement('h2')
-
-        // Проверяем на то что если человек нажмет 100000 раз на мой модуль ( что бы ререндера не было )
-        if (document.querySelector('.custom_game')) {
-            return
-        }
-
-        this.game.className = 'custom_game'
-
+    constructor() {
+        super('custom', 'Кубики');
 
         this.#score = 0
         this.#greatest = 0
-
-        this.container.className = 'text-container'
-        this.body.append(this.container)
-        this.container.append(this.game)
-
-        this.title.textContent = 'Кубики'
-        this.title.className = 'title'
-
-        this.scoreHTML.textContent = `Очки: `
-        this.scoreHTML.className = 'score'
-
-        this.greatestScoreHTML.textContent = `Наилучший результат : `
-        this.greatestScoreHTML.className = 'score'
-
-        this.game.append(this.title, this.scoreHTML, this.greatestScoreHTML)
 
     }
 
@@ -55,12 +25,42 @@ export default class CustomModule extends Module{
     }
 
     trigger() {
+
+        // Проверяем на то что если человек нажмет 100000 раз на мой модуль ( что бы ререндера не было )
+        if (document.querySelector('.custom_game')) {
+            return
+        }
+
+        const body = document.body
+        const container = document.createElement('div')
+        const game = document.createElement('div')
+        const title = document.createElement('h1')
+        const scoreHTML = document.createElement('h2')
+        const greatestScoreHTML = document.createElement('h2')
+
+        game.className = 'custom_game'
+
+        container.className = 'text-container'
+        body.append(container)
+        container.append(game)
+
+        title.textContent = 'Кубики'
+        title.className = 'title'
+
+        scoreHTML.textContent = `Очки: `
+        scoreHTML.className = 'score'
+
+        greatestScoreHTML.textContent = `Наилучший результат : `
+        greatestScoreHTML.className = 'score'
+
+        game.append(title, scoreHTML, greatestScoreHTML)
+
         super.trigger();
-        this.#initialize()
+        this.#initialize(game , scoreHTML, greatestScoreHTML)
     }
 
     //Инициализиаруме колонки и строчки
-    #initialize() {
+    #initialize(game, scoreHTML, greatestScoreHTML) {
         let id = 1
 
         for (let i = 0; i < 4; i++) {
@@ -68,7 +68,7 @@ export default class CustomModule extends Module{
             col.className = 'col'
             col.id = `${id}`
 
-            this.game.append(col)
+            game.append(col)
             for (let j = 0; j < 4; j++) {
                 let row = document.createElement('div')
                 if (i === 0) {
@@ -80,8 +80,9 @@ export default class CustomModule extends Module{
                 row.id = `${id}`
 
                 row.addEventListener('click',(e)=> {
+                    console.log('123')
                     const allSquares = document.querySelectorAll('.elem')
-                    this.#getRate(row, allSquares)
+                    this.#getRate(row, allSquares, scoreHTML, greatestScoreHTML)
                 })
                 col.append(row)
                 id++
@@ -90,8 +91,7 @@ export default class CustomModule extends Module{
     }
 
     // Основная логика
-    #getRate(row, allSquares) {
-
+    #getRate(row, allSquares, scoreHTML, greatestScoreHTML) {
         const randomizer = random(1,10)
 
         if (randomizer <= 7) {
@@ -125,7 +125,7 @@ export default class CustomModule extends Module{
             }
 
             if (+row.id > 12 && +row.id < 17) {
-                if (randomizer <= 5) {
+                if (randomizer <= 7) {
                     const result = confirm('Вы победили! Хотите начать сначала?')
                     this.#newGame(result)
                 }
@@ -134,17 +134,17 @@ export default class CustomModule extends Module{
                 }
             }
             this.#score++
-            this.scoreHTML.textContent = `Очки: ${this.#score}`
+            scoreHTML.textContent = `Очки: ${this.#score}`
 
             if (this.getGreatestScore < this.#score) {
                 this.setGreatestScore = this.#score
-                this.greatestScoreHTML.textContent = `Наилучший результат : ${this.getGreatestScore}`
+                greatestScoreHTML.textContent = `Наилучший результат : ${this.getGreatestScore}`
 
             }
 
         } else {
             this.#score = 0
-            this.scoreHTML.textContent = `Очки: ${this.#score}`
+            scoreHTML.textContent = `Очки: ${this.#score}`
 
             row.classList.add('square_defeated')
             allSquares.forEach((item) => {
@@ -170,5 +170,10 @@ export default class CustomModule extends Module{
         } else {
             alert('Нажмите правой кнопкой мыши для того что бы вызвать контекстное меню!')
         }
+    }
+
+
+    toHTML() {
+        return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
     }
 }

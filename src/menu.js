@@ -9,15 +9,15 @@ export class ContextMenu extends Menu {
       this.#arrayOfModules = [];
       //todo
       // обнуление
-      // this.#startHtmlTemplate = '';
-      // this.modulIsActive = false;
+      this.#startHtmlTemplate = '';
+      this.modulIsActive = false;
    }
    open() {
       document.addEventListener("contextmenu", (event) => {
          event.preventDefault();
          this.el.classList.add('open');
-         this.el.style.top = `${event.offsetY}px`;
-         this.el.style.left = `${event.offsetX}px`;
+         this.el.style.top = `${event.clientY}px`;
+         this.el.style.left = `${event.clientX}px`;
       });
    }
    close() {
@@ -41,6 +41,35 @@ export class ContextMenu extends Menu {
          this.#startHtmlTemplate = this.el;
       }
    }
+   clear() {
+      //todo
+      /* обнуление
+      */
+     const body = document.querySelector('body');
+      // document.body.removeAttribute('style');
+      body.innerHTML = '';
+      body.removeAttribute('style');
+      body.append(this.#startHtmlTemplate);
+
+      //todo удаление таймера
+      const timerIsContain = document.querySelector('#time-input-form')
+      const timer = document.querySelector('.timer')
+      if (timerIsContain) {
+         timerIsContain.remove();
+         timer.style.display = 'none';
+      }
+
+      const countDown = document.querySelector('.countdown')
+      const analitycs = document.querySelector('.analytics-results')
+
+      if (countDown || analitycs) {
+         countDown.remove()
+         analitycs.remove()
+
+      }
+
+      this.modulIsActive = true
+   }
    menuItemListener() {
       this.el.addEventListener('click', event => {
          // проверка был ли клик по айтему меню, а не по самому меню
@@ -50,19 +79,11 @@ export class ContextMenu extends Menu {
                return item.type === event.target.dataset.type
             })
             // включение модуля
-            findedModule.trigger()
-
-            //todo
-            /* обнуление
             if (this.modulIsActive) {
-               console.log('this.modulIsActive');
-               document.body.removeAttribute('style');
-               findedModule.trigger()
-            } else {
-               findedModule.trigger()
-               this.modulIsActive = true
+               this.clear()
             }
-            */
+            findedModule.trigger()
+            this.modulIsActive = true
          }
       })
    }

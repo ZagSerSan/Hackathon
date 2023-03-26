@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.analytics-results {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   z-index: 1;
+   transform: translate3d(-50%, -50%, 0);
+   min-width: 400px;
+
+   font-family: 'Montserrat', sans-serif;
+   font-size: 30px;
+   font-weight: 500;
+   color: #fff;
+}
+
+.countdown {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 30px;
+   font-weight: 500;
+   color: #fff;
+}
