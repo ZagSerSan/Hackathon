@@ -7,7 +7,6 @@ export class ContextMenu extends Menu {
    constructor() {
       super('#menu');
       this.#arrayOfModules = [];
-      //todo
       // обнуление
       this.#startHtmlTemplate = '';
       this.modulIsActive = false;

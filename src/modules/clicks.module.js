@@ -2,10 +2,8 @@ import './clicks.css';
 import {Module} from '@/core/module';
 
 export default class ClicksModule extends Module {
-
   constructor() {
     super(`analytics`, `Аналитика кликов`);
-
   }
 
   #clicksCounter() {
