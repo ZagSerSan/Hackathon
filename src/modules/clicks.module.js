@@ -25,7 +25,6 @@ export default class ClicksModule extends Module {
 
     document.addEventListener(`click`, SingleHandler);
     document.addEventListener(`dblclick`, DoubleHandler);
-    const countDown = document.querySelector('.countdown')
     const timeout = setTimeout(()=> {
       this.#analyticsResultsContainer(counterSingle, counterDouble, total)
       document.removeEventListener('click', SingleHandler)
@@ -34,13 +33,12 @@ export default class ClicksModule extends Module {
       counterSingle = 0
       counterDouble = 0
     },6000)
-    // setInterval(()=> {
-    //   if (countDown) {
-    //     console.log(countDown)
-    //     console.log('123')
-    //     clearTimeout(timeout)
-    //   }
-    // },1000)
+    setInterval(()=> {
+      const countDown = document.querySelector('.countdown')
+      if (!countDown) {
+        clearTimeout(timeout)
+      }
+    },1)
   }
 
 
