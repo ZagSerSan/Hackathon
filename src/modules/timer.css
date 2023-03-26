@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+#time-input-form {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   z-index: 1;
+   transform: translate3d(-50%, -50%, 0);
+   min-width: 400px;
+
+   font-family: 'Montserrat', sans-serif;
+   font-size: 25px;
+   font-weight: 500;
+   color: #000;
+}
+
+.collumn {
+   margin-bottom: 5px;
+}
+#submit-button {
+   margin-top: 15px;
+}
+
+input {
+   border: 1px #6e6e6e solid;
+   border-radius: 7px;
+   padding: 6px;
+   margin-right: 5px;
+
+   font-family: 'Montserrat', sans-serif;
+   font-size: 15px;
+   font-weight: 500;
+   color: #000;
+}
+
+.timer {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   z-index: 1;
+   transform: translate3d(-50%, -50%, 0);
+   min-width: 400px;
+
+   font-family: 'Montserrat', sans-serif;
+   font-size: 25px;
+   font-weight: 500;
+   color: #000;
+   text-align: center;
+}
+

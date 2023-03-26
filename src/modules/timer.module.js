@@ -1,4 +1,5 @@
 import {Module} from "../core/module";
+import './timer.css';
 
 export default class CountdownTimerModule extends Module {
       constructor() {super('timer', `Таймер отсчета`);}
@@ -13,7 +14,7 @@ export default class CountdownTimerModule extends Module {
             hoursInput.name = `hours`;
 
             const hoursLabel = document.createElement(`label`);
-            hoursLabel.textContent = ` hh `;
+            hoursLabel.textContent = ` hours `;
             hoursLabel.htmlFor = `hours`;
 
             const minutesInput = document.createElement(`input`);
@@ -22,7 +23,7 @@ export default class CountdownTimerModule extends Module {
             minutesInput.name = `minutes`;
 
             const minutesLabel = document.createElement(`label`);
-            minutesLabel.textContent = ` mm `;
+            minutesLabel.textContent = ` minutes `;
             minutesLabel.htmlFor = `minutes`;
 
             const secondsInput = document.createElement(`input`);
@@ -31,7 +32,7 @@ export default class CountdownTimerModule extends Module {
             secondsInput.name = `seconds`;
 
             const secondsLabel = document.createElement(`label`);
-            secondsLabel.textContent = ` ss `;
+            secondsLabel.textContent = ` seconds `;
             secondsLabel.htmlFor = `minutes`;
 
             const submitBtn = document.createElement(`input`);
@@ -39,7 +40,19 @@ export default class CountdownTimerModule extends Module {
             submitBtn.type = `button`;
             submitBtn.value = `Start countdown`;
 
-            timeInputForm.append(hoursInput, hoursLabel, minutesInput, minutesLabel, secondsInput, secondsLabel, submitBtn);
+            const div_collumn_1 = document.createElement('div');
+            const div_collumn_2 = document.createElement('div');
+            const div_collumn_3 = document.createElement('div');
+
+            div_collumn_1.className = 'collumn';
+            div_collumn_2.className = 'collumn';
+            div_collumn_3.className = 'collumn';
+
+            div_collumn_1.append(hoursInput, hoursLabel)
+            div_collumn_2.append(minutesInput, minutesLabel)
+            div_collumn_3.append(secondsInput, secondsLabel)
+
+            timeInputForm.append(div_collumn_1, div_collumn_2, div_collumn_3, submitBtn);
             return timeInputForm;
       }
 
@@ -58,6 +71,7 @@ export default class CountdownTimerModule extends Module {
             userSetTimer.setSeconds(newSec);
 
             const timer = document.createElement(`span`);
+            timer.className = 'timer';
 
             const countdownTimer = setInterval(() => {
                   const now = new Date().getTime();
@@ -73,7 +87,7 @@ export default class CountdownTimerModule extends Module {
                         document.body.append(timer);
                         setTimeout(() => timer.style.display = `none`, 2000);
                   } else {
-                        timer.textContent = `${('0' + hours).slice(-2)}hh ${('0' + minutes).slice(-2)}mm ${('0' + seconds).slice(-2)}ss`;
+                        timer.textContent = `${('0' + hours).slice(-2)}h ${('0' + minutes).slice(-2)}m ${('0' + seconds).slice(-2)}s`;
                         document.body.append(timer);
                   }
             }, 1000);

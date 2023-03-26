@@ -51,6 +51,14 @@ export class ContextMenu extends Menu {
       body.removeAttribute('style');
       body.append(this.#startHtmlTemplate);
 
+      //todo удаление таймера
+      const timerIsContain = document.querySelector('#time-input-form')
+      const timer = document.querySelector('.timer')
+      if (timerIsContain) {
+         timerIsContain.remove();
+         timer.style.display = 'none';
+      }
+
       this.modulIsActive = true
    }
    menuItemListener() {
