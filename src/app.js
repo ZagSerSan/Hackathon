@@ -7,7 +7,7 @@ import ClicksModule from "./modules/clicks.module";
 import {ShapeModule} from './modules/shape.module'
 import {Message} from './modules/message.module'
 import {RandomSoundModule} from "./modules/sound.module";
-// import CustomModule from "./modules/custom.module";
+import CustomModule from "./modules/custom.module";
 
 const contextMenu = new ContextMenu();
 
@@ -17,7 +17,7 @@ const shapeModule = new ShapeModule();
 const message = new Message();
 const randomSoundModule = new RandomSoundModule();
 const countdownTimerModule = new CountdownTimerModule();
-// const customModule = new CustomModule();
+const customModule = new CustomModule();
 
 // вызов меню
 contextMenu.open();
@@ -32,7 +32,7 @@ contextMenu.add([
   randomSoundModule
 ]);
 contextMenu.add(countdownTimerModule)
-// contextMenu.add(customModule);
+contextMenu.add(customModule);
 
 // слушатель клика по айтемам меню
 contextMenu.menuItemListener();
