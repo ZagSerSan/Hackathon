@@ -2,7 +2,7 @@ import './styles.css'
 import {ContextMenu} from './menu'
 // moduls
 import {BackgroundModule} from './modules/background.module'
-
+import CountdownTimerModule from "./modules/countdown-timer.module";
 import CustomModule from "./modules/custom.module";
 import ClicksModule from "./modules/clicks.module";
 import {ShapeModule} from './modules/shape.module'
