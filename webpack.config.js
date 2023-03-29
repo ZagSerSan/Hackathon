@@ -66,6 +66,10 @@ module.exports = (env, argv) => {
         {
           test:/.mp3/,
           type:'asset/resource'
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource'
         }
       ],
     }
